@@ -10,11 +10,11 @@ NC='\033[0m'                                                #no color
 check_for_updates="1"                                       #put 1=YES or 0=NO to check for updates
 #Don't change the variables below to make sure the script runs without problems!
 scriptversion="0535"                                        #scriptversion
-tsversion="3.0.13.8"                                        #version of teamspeak server
+tsversion="3.12.1"                                          #version of teamspeak server
 call_home="http://r4p3.6te.net"                             #check for updates
 serverdir="/home/$teamspeakuser/teamspeak3-server$version"  #Don't change this!
-dl_amd64="wget --no-check-certificate https://www.dropbox.com/s/c1dlhjblg5e1n36/teamspeak3-server_linux_amd64.tar.gz?dl=0 -O crack.tar.gz"
-dl_x86="wget --no-check-certificate https://www.dropbox.com/s/bpdmee1ykls6l6s/teamspeak3-server_linux_x86.tar.gz?dl=0 -O crack.tar.gz"
+dl_amd64="wget --no-check-certificate https://files.teamspeak-services.com/releases/server/3.12.1/teamspeak3-server_linux_amd64-3.12.1.tar.bz2?dl=0 -O crack.tar.bz2"
+dl_x86="wget --no-check-certificate https://files.teamspeak-services.com/releases/server/3.12.1/teamspeak3-server_linux_x86-3.12.1.tar.bz2?dl=0 -O crack.tar.bz2"
   
 #################################################################################################
   
@@ -108,6 +108,7 @@ printf "${COLOR1}#   v0.5.32  - introduced the 3.0.13.5 Release        #${NC}\n"
 printf "${COLOR1}#   v0.5.33  - introduced the 3.0.13.6 Release        #${NC}\n"
 printf "${COLOR1}#   v0.5.34  - introduced the 3.0.13.7 Release        #${NC}\n"
 printf "${COLOR1}#   v0.5.35  - introduced the 3.0.13.8 Release        #${NC}\n"
+printf "${COLOR1}#   v0.5.36  - introduced the  3.12.1 Release         #${NC}\n"
 printf "${COLOR1}#######################################################${NC}\n"
 }
 set_user(){
@@ -178,16 +179,16 @@ $dl_amd64
 \_freeBSD\_x86)
 printf "${COLOR1}FreeBSD 32bit is not yet supported with this script.\n${NC}"
 exit 1
-#wget --no-check-certificate '' -O crack.tar.gz
+#wget --no-check-certificate '' -O crack.tar.bz2
 ;;
 \_freeBSD\_amd64)
 printf "${COLOR1}FreeBSD 64bit is not yet supported with this script.\n${NC}"
 exit 1
-#wget --no-check-certificate '' -O crack.tar.gz
+#wget --no-check-certificate '' -O crack.tar.bz2
 ;;
 esac
-tar xf crack.tar.gz
-rm crack.tar.gz
+tar xf crack.tar.bz2
+rm crack.tar.bz2
 }
 update_server_12(){
 stop_acc_server
@@ -196,28 +197,28 @@ cd $serverdir
 cd ..
 case $version in
 \_linux\_x86)
-tar cf teamspeak3-server_linux_x86.backup.tar.gz teamspeak3-server_linux_x86
+tar cf teamspeak3-server_linux_x86.backup.tar.bz2 teamspeak3-server_linux_x86
 $dl_x86
 ;;
 \_linux\_amd64)
-tar cf teamspeak3-server_linux_amd64.backup.tar.gz teamspeak3-server_linux_amd64
+tar cf teamspeak3-server_linux_amd64.backup.tar.bz2 teamspeak3-server_linux_amd64
 $dl_amd64
 ;;
 \_freeBSD\_x86)
 printf "${COLOR2}FreeBSD 32bit is not yet supported with this script.\n${NC}"
 exit 1
-#wget --no-check-certificate '' -O crack.tar.gz
+#wget --no-check-certificate '' -O crack.tar.bz2
 ;;
 \_freeBSD\_amd64)
 echo "${COLOR2}FreeBSD 64bit is not yet supported with this script.\n${NC}"
 exit 1
-#wget --no-check-certificate '' -O crack.tar.gz
+#wget --no-check-certificate '' -O crack.tar.bz2
 ;;
 esac
 stop_acc_server
 kill_ts3_server
-tar xf crack.tar.gz
-rm crack.tar.gz
+tar xf crack.tar.bz2
+rm crack.tar.bz2
 chown -R $teamspeakuser:$teamspeakuser teamspeak3-server$version
 }
 kill_ts3_server(){
